@@ -4,6 +4,7 @@ import './SearchResults.css';
 
 class SearchResults extends React.Component
 {
+
     render()
     {
         return(
