@@ -16,19 +16,19 @@ class App extends React.Component{
           name: 'Gritty Pretty - Intro',
           artist: 'Tove Lo',
           album:  'Sunshine Kitty',
-          id: 1
+          id: 4
         },
         {
           name: 'Glad He\'s Gone',
           artist: 'Tove Lo',
           album:  'Sunshine Kitty',
-          id: 2
+          id: 5
         },
         {
           name: 'Jacques (with Jax Jones)',
           artist: 'Tove Lo',
           album:  'Sunshine Kitty',
-          id: 3
+          id: 6
         }
       ],
       searchResults: [
@@ -52,8 +52,21 @@ class App extends React.Component{
         }
       ]
     };
+
+    this.addTrack = this.addTrack.bind(this);
   }
 
+  addTrack(track)
+  {
+    if (this.state.playlistTracks.find(savedTrack => savedTrack.id === track.id)) {
+      return;
+    }
+
+    this.setState((state)=> ({
+      playlistTracks: state.playlistTracks.push(track)
+    }))
+
+  }
   render()
   {
     return (
@@ -62,7 +75,7 @@ class App extends React.Component{
         <div className="App">
          <SearchBar />
           <div className="App-playlist">
-            <SearchResults searchResults={this.state.searchResults}/>
+            <SearchResults onAdd={this.addTrack} searchResults={this.state.searchResults}/>
             <Playlist playlistName={this.state.playlistName} playlistTracks={this.state.playlistTracks}/>
           </div>
         </div>
